@@ -33,18 +33,16 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_bucket_access_logging_enabled"></a> [bucket\_access\_logging\_enabled](#input\_bucket\_access\_logging\_enabled) | Whether or not to store storage bucket access logs in a storage bucket | `bool` | `false` | no |
 | <a name="input_event_schema"></a> [event\_schema](#input\_event\_schema) | AVRO formatted event schema for google pubsub topic | `string` | n/a | yes |
 | <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | ID for the GCP project to deploy resources to | `string` | n/a | yes |
 | <a name="input_handler_entrypoint"></a> [handler\_entrypoint](#input\_handler\_entrypoint) | entrypoint for the handler function | `string` | n/a | yes |
 | <a name="input_handler_path"></a> [handler\_path](#input\_handler\_path) | Path to script that will be stored in a storage bucket and deployed to Cloud Functions | `string` | n/a | yes |
 | <a name="input_handler_runtime"></a> [handler\_runtime](#input\_handler\_runtime) | Runtime used in handler function | `string` | n/a | yes |
-| <a name="input_kms_enabled"></a> [kms\_enabled](#input\_kms\_enabled) | Whether or not a custom kms key will be used to encrypt the pubsub topic | `bool` | `false` | no |
-| <a name="input_kms_key_name"></a> [kms\_key\_name](#input\_kms\_key\_name) | The name of the customer provided KMS key | `string` | n/a | yes |
+| <a name="input_kms_key_name"></a> [kms\_key\_name](#input\_kms\_key\_name) | The name of the customer provided KMS key | `string` | `""` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the event handler application | `string` | n/a | yes |
 | <a name="input_owner"></a> [owner](#input\_owner) | Owner of the event handler resources | `string` | n/a | yes |
 | <a name="input_schema_encoding"></a> [schema\_encoding](#input\_schema\_encoding) | Encoding pubsub should expect from events | `string` | n/a | yes |
-| <a name="input_storage_bucket_access_logs_bucket"></a> [storage\_bucket\_access\_logs\_bucket](#input\_storage\_bucket\_access\_logs\_bucket) | Name of the storage bucket to store storage bucket access logs in | `string` | n/a | yes |
+| <a name="input_storage_bucket_access_logs_bucket"></a> [storage\_bucket\_access\_logs\_bucket](#input\_storage\_bucket\_access\_logs\_bucket) | Name of the storage bucket to store storage bucket access logs in | `string` | `""` | no |
 
 ## Outputs
 

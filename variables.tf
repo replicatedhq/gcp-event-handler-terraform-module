@@ -38,24 +38,14 @@ variable "handler_entrypoint" {
   description = "entrypoint for the handler function"
 }
 
-variable "kms_enabled" {
-  type        = bool
-  default     = false
-  description = "Whether or not a custom kms key will be used to encrypt the pubsub topic"
-}
-
 variable "kms_key_name" {
   type        = string
+  default     = ""
   description = "The name of the customer provided KMS key"
-}
-
-variable "bucket_access_logging_enabled" {
-  type        = bool
-  default     = false
-  description = "Whether or not to store storage bucket access logs in a storage bucket"
 }
 
 variable "storage_bucket_access_logs_bucket" {
   type        = string
+  default     = ""
   description = "Name of the storage bucket to store storage bucket access logs in"
 }
