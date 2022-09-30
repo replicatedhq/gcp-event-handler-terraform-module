@@ -32,7 +32,7 @@ resource "google_pubsub_subscription" "event_subscription" {
   }
 }
 
-resource "google_storage_bucket" "handler_bucket" {
+resource "google_storage_bucket" "handler_storage_bucket" {
   name                        = "handler_storage_bucket-${var.name}"
   location                    = "US"
   uniform_bucket_level_access = true
