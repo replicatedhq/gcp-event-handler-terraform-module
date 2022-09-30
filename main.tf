@@ -6,7 +6,7 @@ resource "google_pubsub_schema" "event_schema" {
 
 resource "google_pubsub_topic" "event_topic" {
   name         = "event_topic_${var.name}"
-  kms_key_name = var.kms_enabled == true ? var.kms_key_name : null
+  kms_key_name = var.kms_key_name == "" ? null : var.kms_key_name
 
   schema_settings {
     schema   = google_pubsub_schema.event_schema.id
@@ -37,7 +37,7 @@ resource "google_storage_bucket" "handler_bucket" {
   location                    = "US"
   uniform_bucket_level_access = true
   logging {
-    log_bucket = var.bucket_access_logging_enabled == true ? var.storage_bucket_access_logs_bucket : null
+    log_bucket = var.storage_bucket_access_logs_bucket == "" ? null : var.storage_bucket_access_logs_bucket
   }
 
   versioning = {
