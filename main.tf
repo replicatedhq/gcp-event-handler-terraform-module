@@ -40,7 +40,7 @@ resource "google_storage_bucket" "handler_bucket" {
     log_bucket = var.storage_bucket_access_logs_bucket == "" ? null : var.storage_bucket_access_logs_bucket
   }
 
-  versioning = {
+  versioning {
     enabled = true
   }
 
@@ -75,5 +75,5 @@ resource "google_cloudfunctions_function" "handler_function" {
 data "archive_file" "handler_function_zip" {
   type        = "zip"
   source_dir  = "${path.root}${var.handler_path}"
-  ouptut_path = "${path.module}/tmp/handler_function.zip"
+  output_path = "${path.module}/tmp/handler_function.zip"
 }
