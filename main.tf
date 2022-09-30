@@ -32,7 +32,7 @@ resource "google_pubsub_subscription" "event_subscription" {
   }
 }
 
-resource "google_storage_bucket" "handler_bucket" {
+resource "google_storage_bucket" "handler_storage_bucket" {
   name                        = "handler_storage_bucket-${var.name}"
   location                    = "US"
   uniform_bucket_level_access = true
@@ -51,8 +51,8 @@ resource "google_storage_bucket" "handler_bucket" {
 }
 
 resource "google_storage_bucket_object" "handler_object" {
-  name         = "handler_bucket_object-${var.name}"
-  bucket       = google_storage_bucket.handler_bucket.name
+  name         = "handler_storage_bucket_object-${var.name}"
+  bucket       = google_storage_bucket.handler_storage_bucket.name
   source       = data.archive_file.handler_function_zip.output_path
   content_type = "application/zip"
   depends_on   = [google_storage_bucket.handler_storage_bucket]
@@ -63,7 +63,7 @@ resource "google_cloudfunctions_function" "handler_function" {
   runtime               = var.handler_runtime
   entry_point           = var.handler_entrypoint
   trigger_http          = true
-  source_archive_bucket = google_storage_bucket.handler_bucket.name
+  source_archive_bucket = google_storage_bucket.handler_storage_bucket.name
   source_archive_object = google_storage_bucket_object.handler_object.name
 
   labels = {
