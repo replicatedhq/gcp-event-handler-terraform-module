@@ -74,6 +74,6 @@ resource "google_cloudfunctions_function" "handler_function" {
 
 data "archive_file" "handler_function_zip" {
   type        = "zip"
-  source_dir  = "${path.root}${var.handler_path}"
+  source_file = "${path.root}${var.handler_path}"
   output_path = "${path.module}/tmp/handler_function.zip"
 }
