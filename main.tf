@@ -36,8 +36,13 @@ resource "google_storage_bucket" "handler_storage_bucket" {
   name                        = "handler_storage_bucket-${var.name}"
   location                    = "US"
   uniform_bucket_level_access = true
-  logging {
-    log_bucket = var.storage_bucket_access_logs_bucket == "" ? null : var.storage_bucket_access_logs_bucket
+
+  dynamic "logging" {
+    for_each = var.storage_bucket_access_logs_bucket != null ? toset([1]) : toset([])
+
+    content {
+      log_bucket = var.storage_bucket_access_logs_bucket
+    }
   }
 
   versioning {
