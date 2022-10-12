@@ -1,3 +1,18 @@
+# Resource to force archiving of file during apply step
+resource "null_resource" "trigger" {
+  triggers = {
+    timestamp = timestamp()
+  }
+}
+
+data "archive_file" "handler_function_zip" {
+  type        = "zip"
+  source_dir  = var.handler_path
+  output_path = "${path.root}/handler_function.zip"
+
+  depends_on = [resource.null_resource.trigger]
+}
+
 resource "google_pubsub_schema" "event_schema" {
   name       = "event_schema_${var.name}"
   type       = "AVRO"
@@ -77,8 +92,3 @@ resource "google_cloudfunctions_function" "handler_function" {
   }
 }
 
-data "archive_file" "handler_function_zip" {
-  type        = "zip"
-  source_dir  = "${path.root}${var.handler_path}"
-  output_path = "${path.module}/tmp/handler_function.zip"
-}
