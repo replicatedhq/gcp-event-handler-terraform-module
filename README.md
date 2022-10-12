@@ -5,6 +5,7 @@
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.11 |
 | <a name="requirement_archive"></a> [archive](#requirement\_archive) | ~> 2.2.0 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.37.0 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.1.1 |
 
 ## Providers
 
@@ -12,6 +13,7 @@
 |------|---------|
 | <a name="provider_archive"></a> [archive](#provider\_archive) | ~> 2.2.0 |
 | <a name="provider_google"></a> [google](#provider\_google) | ~> 4.37.0 |
+| <a name="provider_null"></a> [null](#provider\_null) | ~> 3.1.1 |
 
 ## Modules
 
@@ -27,6 +29,7 @@ No modules.
 | [google_pubsub_topic.event_topic](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
 | [google_storage_bucket.handler_storage_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
 | [google_storage_bucket_object.handler_object](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object) | resource |
+| [null_resource.trigger](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [archive_file.handler_function_zip](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
 
 ## Inputs
