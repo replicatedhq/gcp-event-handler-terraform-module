@@ -4,7 +4,7 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.11 |
 | <a name="requirement_archive"></a> [archive](#requirement\_archive) | ~> 2.2.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.37.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.47.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.1.1 |
 
 ## Providers
@@ -12,7 +12,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_archive"></a> [archive](#provider\_archive) | ~> 2.2.0 |
-| <a name="provider_google"></a> [google](#provider\_google) | ~> 4.37.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | ~> 4.47.0 |
 | <a name="provider_null"></a> [null](#provider\_null) | ~> 3.1.1 |
 
 ## Modules
@@ -37,8 +37,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_event_schema"></a> [event\_schema](#input\_event\_schema) | AVRO formatted event schema for google pubsub topic | `string` | n/a | yes |
-| <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | ID for the GCP project to deploy resources to | `string` | n/a | yes |
-| <a name="input_gcp_project_region"></a> [gcp\_project\_region](#input\_gcp\_project\_region) | Region to deploy GCP resources to | `string` | n/a | yes |
 | <a name="input_handler_entrypoint"></a> [handler\_entrypoint](#input\_handler\_entrypoint) | entrypoint for the handler function | `string` | n/a | yes |
 | <a name="input_handler_path"></a> [handler\_path](#input\_handler\_path) | Path to script that will be stored in a storage bucket and deployed to Cloud Functions | `string` | n/a | yes |
 | <a name="input_handler_runtime"></a> [handler\_runtime](#input\_handler\_runtime) | Runtime used in handler function | `string` | n/a | yes |

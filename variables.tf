@@ -18,16 +18,6 @@ variable "schema_encoding" {
   description = "Encoding pubsub should expect from events"
 }
 
-variable "gcp_project_id" {
-  type        = string
-  description = "ID for the GCP project to deploy resources to"
-}
-
-variable "gcp_project_region" {
-  type        = string
-  description = "Region to deploy GCP resources to"
-}
-
 variable "handler_path" {
   type        = string
   description = "Path to script that will be stored in a storage bucket and deployed to Cloud Functions"
