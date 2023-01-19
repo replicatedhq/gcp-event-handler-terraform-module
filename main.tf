@@ -79,10 +79,13 @@ resource "google_storage_bucket_object" "handler_object" {
 }
 
 resource "google_cloudfunctions_function" "handler_function" {
-  name                  = "handler_function-${var.name}"
-  runtime               = var.handler_runtime
-  entry_point           = var.handler_entrypoint
-  trigger_http          = true
+  name        = "handler_function-${var.name}"
+  runtime     = var.handler_runtime
+  entry_point = var.handler_entrypoint
+  event_trigger {
+    event_type   = "google.cloud.pubsub.topic.v1.messagePublished"
+    pubsub_topic = google_pubsub_topic.event_topic.name
+  }
   source_archive_bucket = google_storage_bucket.handler_storage_bucket.name
   source_archive_object = google_storage_bucket_object.handler_object.name
 
