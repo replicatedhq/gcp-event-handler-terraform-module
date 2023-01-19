@@ -37,8 +37,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_event_schema"></a> [event\_schema](#input\_event\_schema) | AVRO formatted event schema for google pubsub topic | `string` | n/a | yes |
-| <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | ID for the GCP project to deploy resources to | `string` | n/a | yes |
-| <a name="input_gcp_project_region"></a> [gcp\_project\_region](#input\_gcp\_project\_region) | Region to deploy GCP resources to | `string` | n/a | yes |
 | <a name="input_handler_entrypoint"></a> [handler\_entrypoint](#input\_handler\_entrypoint) | entrypoint for the handler function | `string` | n/a | yes |
 | <a name="input_handler_path"></a> [handler\_path](#input\_handler\_path) | Path to script that will be stored in a storage bucket and deployed to Cloud Functions | `string` | n/a | yes |
 | <a name="input_handler_runtime"></a> [handler\_runtime](#input\_handler\_runtime) | Runtime used in handler function | `string` | n/a | yes |
