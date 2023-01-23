@@ -41,10 +41,6 @@ resource "google_pubsub_subscription" "event_subscription" {
   topic = google_pubsub_topic.event_topic.name
 
   depends_on = [google_pubsub_topic.event_topic]
-
-  push_config {
-    push_endpoint = google_cloudfunctions2_function.handler_function.https_trigger_url
-  }
 }
 
 resource "google_storage_bucket" "handler_storage_bucket" {
