@@ -43,7 +43,7 @@ resource "google_pubsub_subscription" "event_subscription" {
   depends_on = [google_pubsub_topic.event_topic]
 
   push_config {
-    push_endpoint = google_cloudfunctions_function.handler_function.https_trigger_url
+    push_endpoint = google_cloudfunctions2_function.handler_function.https_trigger_url
   }
 }
 
@@ -78,16 +78,24 @@ resource "google_storage_bucket_object" "handler_object" {
   depends_on   = [google_storage_bucket.handler_storage_bucket]
 }
 
-resource "google_cloudfunctions_function" "handler_function" {
+resource "google_cloudfunctions2_function" "handler_function" {
   name        = "handler_function-${var.name}"
-  runtime     = var.handler_runtime
-  entry_point = var.handler_entrypoint
-  event_trigger {
-    event_type = "google.cloud.pubsub.topic.v1.messagePublished"
-    resource   = google_pubsub_topic.event_topic.name
+
+  build_config {
+    runtime = var.handler_runtime
+    entry_point = var.handler_entrypoint
+    source {
+      storage_source {
+        bucket = google_storage_bucket.handler_storage_bucket.name
+        object = google_storage_bucket_object.handler_object.name
+      }
+    }
   }
-  source_archive_bucket = google_storage_bucket.handler_storage_bucket.name
-  source_archive_object = google_storage_bucket_object.handler_object.name
+
+  event_trigger {
+    event_type   = "google.cloud.pubsub.topic.v1.messagePublished"
+    pubsub_topic = google_pubsub_topic.event_topic.name
+  }
 
   labels = {
     owner      = var.owner
