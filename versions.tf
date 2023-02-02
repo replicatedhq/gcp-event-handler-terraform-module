@@ -9,7 +9,10 @@ terraform {
     null = {
       version = "~> 3.1.1"
     }
+    google-beta = {
+      version = "~> 4.51.0"
+    }
   }
 
-  required_version = ">= 1.0.11"
+  required_version = ">= 1.3.7"
 }

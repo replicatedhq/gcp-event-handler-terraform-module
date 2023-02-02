@@ -8,14 +8,9 @@ variable "owner" {
   description = "Owner of the event handler resources"
 }
 
-variable "event_schema" {
+variable "gcp_account_id" {
   type        = string
-  description = "AVRO formatted event schema for google pubsub topic"
-}
-
-variable "schema_encoding" {
-  type        = string
-  description = "Encoding pubsub should expect from events"
+  description = "The account id that is used to generate the service account email address and a stable unique id"
 }
 
 variable "handler_path" {
@@ -44,3 +39,9 @@ variable "storage_bucket_access_logs_bucket" {
   default     = ""
   description = "Name of the storage bucket to store storage bucket access logs in"
 }
+
+variable "function_location" {
+  type        = string
+  description = "Location for the cloudfunctions2 function"
+}
+
