@@ -24,8 +24,12 @@ resource "google_pubsub_topic" "event_topic" {
 
 }
 
+resource "random_string" "random" {
+  length = 8
+}
+
 resource "google_storage_bucket" "handler_storage_bucket" {
-  name                        = "handler-storage-bucket-${var.name}"
+  name                        = "handler-storage-bucket-${var.name}-${random_string.random.result}"
   location                    = "US"
   uniform_bucket_level_access = true
 
