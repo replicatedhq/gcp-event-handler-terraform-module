@@ -25,7 +25,7 @@ resource "google_pubsub_topic" "event_topic" {
 }
 
 resource "google_storage_bucket" "handler_storage_bucket" {
-  name                        = "handler-storage-bucket-${var.name}"
+  name                        = "${var.name}-${var.gcp_account_id}-bucket"
   location                    = "US"
   uniform_bucket_level_access = true
 
