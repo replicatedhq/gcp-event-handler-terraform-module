@@ -8,11 +8,6 @@ variable "owner" {
   description = "Owner of the event handler resources"
 }
 
-variable "gcp_account_id" {
-  type        = string
-  description = "The account id that is used to generate the service account email address and a stable unique id"
-}
-
 variable "handler_path" {
   type        = string
   description = "Path to script that will be stored in a storage bucket and deployed to Cloud Functions"
@@ -45,3 +40,8 @@ variable "function_location" {
   description = "Location for the cloudfunctions2 function"
 }
 
+variable "handler_secrets" {
+  type        = list(any)
+  default     = []
+  description = "List of secrets from gcp secrets manager to include in the cloudfunction function"
+}

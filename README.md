@@ -32,16 +32,17 @@ No modules.
 | [google_storage_bucket_object.handler_object](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object) | resource |
 | [null_resource.trigger](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [archive_file.handler_function_zip](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
+| [google_project.project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_function_location"></a> [function\_location](#input\_function\_location) | Location for the cloudfunctions2 function | `string` | n/a | yes |
-| <a name="input_gcp_account_id"></a> [gcp\_account\_id](#input\_gcp\_account\_id) | The account id that is used to generate the service account email address and a stable unique id | `string` | n/a | yes |
 | <a name="input_handler_entrypoint"></a> [handler\_entrypoint](#input\_handler\_entrypoint) | entrypoint for the handler function | `string` | n/a | yes |
 | <a name="input_handler_path"></a> [handler\_path](#input\_handler\_path) | Path to script that will be stored in a storage bucket and deployed to Cloud Functions | `string` | n/a | yes |
 | <a name="input_handler_runtime"></a> [handler\_runtime](#input\_handler\_runtime) | Runtime used in handler function | `string` | n/a | yes |
+| <a name="input_handler_secrets"></a> [handler\_secrets](#input\_handler\_secrets) | List of secrets from gcp secrets manager to include in the cloudfunction function | `list(any)` | `null` | no |
 | <a name="input_kms_key_name"></a> [kms\_key\_name](#input\_kms\_key\_name) | The name of the customer provided KMS key | `string` | `""` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the event handler application | `string` | n/a | yes |
 | <a name="input_owner"></a> [owner](#input\_owner) | Owner of the event handler resources | `string` | n/a | yes |
