@@ -5,6 +5,8 @@ resource "null_resource" "trigger" {
   }
 }
 
+data "google_project" "project" {}
+
 data "archive_file" "handler_function_zip" {
   type        = "zip"
   source_dir  = var.handler_path
@@ -25,7 +27,7 @@ resource "google_pubsub_topic" "event_topic" {
 }
 
 resource "google_storage_bucket" "handler_storage_bucket" {
-  name                        = "${var.name}-${var.gcp_account_id}-bucket"
+  name                        = "${var.name}-${data.google_project.project.project_id}-bucket"
   location                    = "US"
   uniform_bucket_level_access = true
 
@@ -56,12 +58,12 @@ resource "google_storage_bucket_object" "handler_object" {
 }
 
 resource "google_service_account" "svc_account" {
-  account_id   = var.gcp_account_id
+  account_id   = data.google_project.project.project_id
   display_name = "event-handler-svc-account"
 }
 
 resource "google_project_iam_member" "svc_account_role_bind" {
-  project = var.gcp_account_id
+  project = data.google_project.project.project_id
   role    = "roles/run.invoker"
   member  = "serviceAccount:${google_service_account.svc_account.email}"
 }
@@ -88,6 +90,17 @@ resource "google_cloudfunctions2_function" "handler_function" {
 
   service_config {
     service_account_email = google_service_account.svc_account.email
+
+    dynamic "secret_environment_variables" {
+      for_each = var.handler_secrets
+
+      content {
+        key        = secret_environment_variables.value["key"]
+        project_id = secret_environment_variables.value["project_id"]
+        secret     = secret_environment_variables.value["secret"]
+        version    = secret_environment_variables.value["version"]
+      }
+    }
   }
 
   labels = {
