@@ -22,6 +22,7 @@ resource "google_pubsub_topic" "event_topic" {
   labels = {
     owner      = var.owner
     managed-by = "terraform"
+    expires-on = var.expires-on
   }
 
 }
@@ -46,6 +47,7 @@ resource "google_storage_bucket" "handler_storage_bucket" {
   labels = {
     owner      = var.owner
     managed-by = "terraform"
+    expires-on = var.expires-on
   }
 }
 
@@ -106,5 +108,6 @@ resource "google_cloudfunctions2_function" "handler_function" {
   labels = {
     owner      = var.owner
     managed-by = "terraform"
+    expires-on = var.expires-on
   }
 }
