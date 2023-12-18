@@ -8,6 +8,11 @@ variable "owner" {
   description = "Owner of the event handler resources"
 }
 
+variable "expires-on" {
+  type        = string
+  description = "Sets the expiration time for the event handler resources for cloud custodian clean up. RFC-3339 format except that hours, minutes, and seconds are not supported due to GCPs label limits"
+}
+
 variable "handler_path" {
   type        = string
   description = "Path to script that will be stored in a storage bucket and deployed to Cloud Functions"
